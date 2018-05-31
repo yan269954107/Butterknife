@@ -13,7 +13,10 @@ public abstract class DebouncingOnClickListener implements View.OnClickListener 
   @Override
   public final void onClick(View v) {
     long time = System.currentTimeMillis();
-    if (time - clickTime < 500) return;
+    if (time - clickTime < 500) {
+      clickTime = time;
+      return;
+    }
     clickTime = time;
     doClick(v);
   }
